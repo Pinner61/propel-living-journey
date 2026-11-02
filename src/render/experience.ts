@@ -300,6 +300,7 @@ function renderJourney(): string {
       <p class="eyebrow">${escapeHtml(journey.eyebrow)}</p>
       <h2 id="journey-title">${escapeHtml(journey.heading)}</h2>
       <p class="measure">${escapeHtml(journey.lede)}</p>
+      <p class="timeline-demo"><a href="./timeline.html">Open the timeline prototype</a></p>
       <p class="window">Project window ${escapeHtml(identity.window)}</p>
       <div class="pathway">
         <div class="pathway-line">

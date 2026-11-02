@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { site } from "../src/content/site";
 import { renderExperience } from "../src/render/experience";
+import { renderTimeline } from "../src/render/timeline";
 import { escapeHtml } from "../src/render/escape";
 import { pathwayNodes, pillarAnchors, viewPoint } from "../src/viz/layout";
 
@@ -60,6 +61,77 @@ describe("render", () => {
 
   it("escapes text", () => {
     assert.equal(escapeHtml(`&<>"'`), "&amp;&lt;&gt;&quot;&#39;");
+  });
+});
+
+describe("timeline", () => {
+  const html = renderTimeline();
+
+  it("prints the official stages on one alternating spine", () => {
+    assert.match(html, /This is how we plan to build it\./);
+    assert.match(html, /id="infrastructure"/);
+    assert.match(html, /id="expansion"/);
+    assert.match(html, /id="implementation"/);
+    assert.match(html, /href="#infrastructure"/);
+    assert.match(html, /href="#expansion"/);
+    assert.match(html, /href="#implementation"/);
+    assert.match(html, /propel-timeline__year-index">01</);
+    assert.match(html, /propel-timeline__year-index">02</);
+    assert.match(html, /propel-timeline__year-index">03</);
+    assert.match(html, /Analytics Integrator 2\.0/);
+    assert.match(html, /micro-learning videos/);
+    assert.match(html, /500 LEAD students/);
+    assert.match(html, /measurable improvement/);
+    assert.match(html, /Tiers 1 and 2/);
+    assert.match(html, /personalized care/);
+    assert.match(html, /Self-directed content/);
+    assert.match(html, /AI-driven chatbots/);
+    assert.match(html, /digital learning communities/);
+    assert.match(html, /Flourishing coaches/);
+    assert.match(html, /team teaching/);
+    assert.match(html, /collaborative learning/);
+    assert.match(html, /replicable, scalable/);
+    assert.match(html, /broad institutional adoption/);
+    assert.match(html, /deployment, refinement/);
+    assert.match(html, /all three tiers/);
+    assert.match(html, /Year-one goals/);
+    assert.match(html, /not as results/);
+    assert.match(html, /Create and finalize the first set of microlearning videos/);
+    assert.doesNotMatch(html, /name="propel-timeline-stage"/);
+    assert.doesNotMatch(html, /In this stage/);
+    const propelOnly = html.slice(0, html.indexOf('id="president-story"'));
+    assert.doesNotMatch(propelOnly, /\d+%/);
+    assert.doesNotMatch(html, /propel-timeline__year-index">[^<]*(2026|2027|2028)/);
+    assert.doesNotMatch(html, /propel-timeline__nav-index">[^<]*(2026|2027|2028)/);
+    const sides = [...html.matchAll(/propel-timeline__event is-(left|right)/g)].map((match) => match[1]);
+    assert.deepEqual(sides.slice(0, 6), ["left", "right", "left", "right", "left", "right"]);
+    assert.ok(sides.length > 40);
+    for (let index = 1; index < sides.length; index += 1) {
+      assert.notEqual(sides[index], sides[index - 1]);
+    }
+    assert.match(html, /Michael M\. Crow/);
+    assert.match(html, /unequal distribution of its most important asset/);
+    assert.match(html, /National Service Universities/);
+    assert.match(html, /Took office as the 16th president/);
+    assert.match(html, /href="#p-2002"/);
+    assert.match(html, /Learn more/);
+    for (const phrase of [
+      "Established the foundation",
+      "With the development of Analytics Integrator 2.0",
+      "Demonstrated that integrated",
+      "Tiers 1 and 2 launch",
+      "Self-directed content, AI-driven chatbots",
+      "Flourishing coaches are introduced",
+      "Project PROPEL will become",
+      "Year three will focus",
+    ]) {
+      assert.equal(html.split(phrase).length - 1, 1, phrase);
+    }
+  });
+
+  it("keeps timeline ids unique", () => {
+    const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(new Set(ids).size, ids.length);
   });
 });
 

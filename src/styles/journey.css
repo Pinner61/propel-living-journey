@@ -1,3 +1,16 @@
+.propel .timeline-demo {
+  margin: 0.35rem 0 1.25rem;
+}
+
+.propel .timeline-demo a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.propel .timeline-demo a:hover {
+  color: var(--asu-gold);
+}
+
 .propel .window {
   display: inline-block;
   margin: 0 0 1.25rem;

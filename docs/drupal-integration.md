@@ -119,7 +119,31 @@ The visualization expects three stages in order and four pillars. Changing those
 
 Until an editor model is approved, keep copy in the prototype file and rebuild. Do not invent a Paragraphs schema in the site before the content model is reviewed.
 
-## 7. What needs approval or adaptation
+## 7. Timeline component
+
+`timeline.html` demonstrates the three-year PROPEL timeline on its own. It does not replace the rest of the PROPEL page, and it is not a patch to president.asu.edu.
+
+The component root is `[data-propel-timeline]`. `npm run build` also writes:
+
+- `dist/timeline.html`
+- `dist/assets/propel-timeline.js`
+- `dist/assets/propel-timeline.css`
+
+The script assigns `window.PropelTimeline.mount`. Mounting is idempotent and uses `data-propel-timeline-ready`. Call `controller.destroy()` on a Drupal detach with trigger `unload`.
+
+The timeline is one continuous vertical list. Milestones alternate left and right around a center line at 768px and above. Below 768px the line moves to the left and every milestone sits to its right. The markup does not depend on the script: the year links are normal anchors (`#infrastructure`, `#expansion`, `#implementation`, then `#president-story`, `#p-latest`, `#p-2031`, and `#p-2025` through `#p-2002`), and the text is in the page.
+
+The three PROPEL stages come first. The Office of the President chronology follows, from the Michael M. Crow quote through 2002, using the wording, Learn more URLs, and pictures saved from president.asu.edu. The year nav is two rows: the three PROPEL stages, then a horizontally scrolling strip of the later years. A spacer after the closing links lets the last year and those links scroll up under the sticky bar.
+
+The script measures scroll position and fills the line to match the reading position. It does not report project completion. It sets `aria-current="location"` on the year in view, announces that year, and writes the hash with `replaceState` while scrolling or `pushState` when a year link is used. A year counts as current once its top is just under the sticky nav, so a short year such as Full implementation stays selected when its heading is the one on screen. Jumps longer than about 1600px are instant; shorter jumps stay smooth. Arrow keys move through every year link. `prefers-reduced-motion` and `?motion=reduce` leave every block visible and skip the reveal.
+
+PROPEL copy is read from `src/content/site.ts` through `src/content/timeline.ts`. Change the stage paragraphs there; do not edit the rendered sentences in the template. The first sentence of a stage introduces the year. Later sentences become milestones. Year-one goals stay one block, with the note that they are goals rather than results. The presidential entries live in `src/content/president-timeline.ts`, and their pictures are in `public/media/president/`.
+
+Set `--tl-sticky-offset` to the sticky Webspark header height if the script is not measuring a `.timeline-review__bar`. The year headings use `scroll-margin-top: var(--tl-scroll-pad)`. Visual values live on `.propel-timeline` in `src/styles/timeline.css`.
+
+Do not load `timeline-review` page styles onto a Webspark page. Those belong to the local demonstration bar. Gold is limited to the year markers (black type on gold). The reading line is maroon.
+
+## 8. What needs approval or adaptation
 
 - Placement on an official ASU page, including whether this replaces or supplements the current PROPEL pages.
 - Web standards review: heading outline beside the Webspark page title, skip link, focus, contrast, and 200% zoom.
