@@ -1,0 +1,241 @@
+.propel .window {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 3px solid var(--asu-gold);
+  font-weight: 700;
+}
+
+.propel .pathway-line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 0.6rem;
+  align-items: center;
+}
+
+.propel .pathway-svg {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.propel .step-prev { grid-column: 1; grid-row: 1; }
+.propel .step-next { grid-column: 3; grid-row: 1; }
+
+.propel .step {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0.55rem 0.8rem;
+  border: 2px solid var(--asu-maroon);
+  background: #fff;
+  color: var(--asu-maroon);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.22s var(--ease), color 0.22s var(--ease), transform 0.22s var(--ease);
+}
+
+.propel .step:hover:not(:disabled) {
+  background: var(--asu-maroon);
+  color: #fff;
+}
+
+.propel .step:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.propel .step:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.propel .path-base,
+.propel .path-progress {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.propel .path-base {
+  stroke: #8c1d40;
+  stroke-width: 3px;
+}
+
+.propel .path-progress {
+  stroke: #ffc627;
+  stroke-width: 5px;
+}
+
+.propel .year-ring {
+  fill: #fff;
+  stroke: #8c1d40;
+  stroke-width: 2.5;
+}
+
+.propel .year-core { fill: #8c1d40; }
+
+.propel .year-node.is-complete .year-core { fill: #ffc627; }
+
+.propel .year-node.is-active .year-ring {
+  fill: #8c1d40;
+  stroke: #ffc627;
+  stroke-width: 4;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: propel-pulse 2.8s ease-in-out infinite;
+}
+
+.propel .year-node.is-active .year-core { fill: #fff; }
+
+.propel .year-picks {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.propel .section-journey .year-choice label {
+  padding: 0.85rem 0.9rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
+.propel .section-journey .year-choice:has(input:checked) label {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.72);
+  color: #fff;
+}
+
+.propel .section-journey .year-choice .choice-kicker {
+  display: inline-block;
+  margin-top: 0.35rem;
+}
+
+.propel .section-journey .year-choice:has(input:checked) .choice-kicker {
+  margin-top: 0.45rem;
+  padding: 0.18rem 0.45rem;
+  background: var(--asu-gold);
+  color: #191919;
+  font-weight: 700;
+}
+
+.propel .stage-panel { display: none; }
+
+#journey:has(#year-infrastructure-input:checked) #panel-infrastructure,
+#journey:has(#year-expansion-input:checked) #panel-expansion,
+#journey:has(#year-implementation-input:checked) #panel-implementation {
+  display: block;
+}
+
+.propel .section-journey .stage-panel {
+  margin-top: 1.25rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #f3f3f3;
+  animation: propel-panel 0.42s var(--ease);
+}
+
+.propel .section-journey .stage-panel .eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.28rem 0.5rem;
+  background: var(--asu-gold);
+  color: #191919;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 0.95rem;
+}
+
+.propel .milestones { margin-top: 0.5rem; }
+
+.propel .section-journey .milestone {
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.propel .section-journey .milestone summary,
+.propel .section-journey .milestone[open] summary {
+  color: #fff;
+}
+
+.propel .section-journey .milestone summary::before,
+.propel .section-journey .milestone[open] summary::before {
+  background: var(--asu-gold);
+}
+
+.propel .milestone summary {
+  min-height: 48px;
+  padding: 0.75rem 0;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.propel .milestone summary::-webkit-details-marker { display: none; }
+
+.propel .milestone summary::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.7rem;
+  background: var(--asu-maroon);
+  vertical-align: -1px;
+}
+
+.propel .milestone[open] summary {
+  color: var(--asu-maroon);
+}
+
+.propel .milestone[open] summary::before {
+  background: var(--asu-gold);
+}
+
+.propel .goals {
+  margin-top: 1.1rem;
+  padding-top: 0.4rem;
+}
+
+.propel .goal-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.propel .goals ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.propel .goals li {
+  margin: 0 0 0.75rem;
+}
+
+@media (max-width: 759px) {
+  .propel .pathway-svg { display: none; }
+
+  .propel .pathway-line {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .propel .year-picks {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    grid-template-columns: 1fr;
+  }
+
+  .propel .step-prev { grid-column: 1; grid-row: 2; }
+  .propel .step-next { grid-column: 2; grid-row: 2; }
+
+  .propel .section-journey .year-choice label {
+    border-left: 1px solid rgba(255, 255, 255, 0.32);
+  }
+
+  #journey:has(#year-expansion-input:checked) .year-choice:nth-of-type(-n + 2) label,
+  #journey:has(#year-implementation-input:checked) .year-choice label {
+    border-left-color: var(--asu-gold);
+  }
+}

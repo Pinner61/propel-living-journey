@@ -1,0 +1,29 @@
+.propel {
+  --asu-maroon: #8c1d40;
+  --asu-maroon-deep: #6e1733;
+  --asu-gold: #ffc627;
+  --ink: #191919;
+  --muted: #3d3d3d;
+  --rule: #d5d0c8;
+  --paper: #f6f3ee;
+  --white: #ffffff;
+  --header-h: 6.5rem;
+  --max: 76rem;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Arial, Helvetica, "Nimbus Sans", sans-serif;
+  font-size: 100%;
+  line-height: 1.55;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.propel,
+.propel *,
+.propel *::before,
+.propel *::after {
+  box-sizing: border-box;
+}

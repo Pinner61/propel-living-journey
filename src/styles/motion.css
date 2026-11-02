@@ -1,0 +1,113 @@
+@keyframes propel-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes propel-flow {
+  to { stroke-dashoffset: -96; }
+}
+
+@keyframes propel-fade {
+  to { opacity: 1; }
+}
+
+@keyframes propel-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes propel-panel {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes propel-rise {
+  from { transform: translateY(14px); }
+  to { transform: none; }
+}
+
+.propel-enhanced .reveal.is-in {
+  animation: propel-rise 0.6s var(--ease);
+}
+
+.propel-enhanced .frame-img {
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+
+.propel-enhanced .frame-img:not(.is-ready) {
+  opacity: 0;
+}
+
+.propel .milestone[open] p {
+  animation: propel-panel 0.32s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .propel:not(.propel-motion-full) .hero-path,
+  .propel:not(.propel-motion-full) .hero-flow,
+  .propel:not(.propel-motion-full) .hero-pulse,
+  .propel:not(.propel-motion-full) .year-node.is-active .year-ring,
+  .propel:not(.propel-motion-full) .pillar-panel,
+  .propel:not(.propel-motion-full) .tier-panel,
+  .propel:not(.propel-motion-full) .stage-panel,
+  .propel:not(.propel-motion-full) .milestone[open] p,
+  .propel:not(.propel-motion-full) .reveal.is-in,
+  .propel-reduced .hero-path,
+  .propel-reduced .hero-flow,
+  .propel-reduced .hero-pulse,
+  .propel-reduced .year-node.is-active .year-ring,
+  .propel-reduced .pillar-panel,
+  .propel-reduced .tier-panel,
+  .propel-reduced .stage-panel,
+  .propel-reduced .milestone[open] p,
+  .propel-reduced .reveal.is-in {
+    animation: none;
+  }
+
+  .propel:not(.propel-motion-full) .hero-path,
+  .propel-reduced .hero-path {
+    stroke-dashoffset: 0;
+  }
+
+  .propel:not(.propel-motion-full) .hero-flow,
+  .propel-reduced .hero-flow {
+    opacity: 0;
+  }
+
+  .propel:not(.propel-motion-full) .btn,
+  .propel:not(.propel-motion-full) .step,
+  .propel:not(.propel-motion-full) .choice label,
+  .propel:not(.propel-motion-full) .concept-choice,
+  .propel:not(.propel-motion-full) .concept-choice .choice-body,
+  .propel:not(.propel-motion-full) .frame-img,
+  .propel:not(.propel-motion-full) .portrait img,
+  .propel:not(.propel-motion-full) .team-group .person,
+  .propel-reduced .btn,
+  .propel-reduced .step,
+  .propel-reduced .choice label,
+  .propel-reduced .concept-choice,
+  .propel-reduced .concept-choice .choice-body,
+  .propel-reduced .frame-img,
+  .propel-reduced .portrait img,
+  .propel-reduced .team-group .person {
+    transition: none;
+  }
+}
+
+.propel-reduced .hero-path {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+
+.propel-reduced .hero-flow,
+.propel-reduced .hero-pulse,
+.propel-reduced .year-node.is-active .year-ring,
+.propel-reduced .pillar-panel,
+.propel-reduced .tier-panel,
+.propel-reduced .stage-panel,
+.propel-reduced .reveal.is-in {
+  animation: none;
+}
+
+.propel-reduced .hero-flow {
+  opacity: 0;
+}

@@ -1,0 +1,113 @@
+.propel .hero {
+  padding: clamp(1.5rem, 3vw, 2.75rem) 0 clamp(2rem, 4vw, 3.25rem);
+  scroll-margin-top: calc(var(--header-h) + 0.75rem);
+}
+
+.propel .hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.propel .hero-grid > * {
+  min-width: 0;
+}
+
+.propel .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.propel .hero-figure {
+  margin: 0;
+}
+
+.propel .hero-mark {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.propel .hero-path,
+.propel .hero-flow {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.propel .hero-path {
+  stroke: #8c1d40;
+  stroke-width: 2.25;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: propel-draw 1.15s var(--ease) forwards;
+}
+
+.propel .hero-path:nth-of-type(2) { animation-delay: 0.12s; }
+.propel .hero-path:nth-of-type(3) { animation-delay: 0.24s; }
+.propel .hero-path:nth-of-type(4) { animation-delay: 0.36s; }
+
+.propel .hero-flow {
+  stroke: #ffc627;
+  stroke-width: 3.5;
+  stroke-dasharray: 2 22;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  animation: propel-flow 2.6s linear infinite, propel-fade 0.4s ease 1.15s forwards;
+}
+
+.propel .hero-pulse {
+  transform-origin: 340px 258px;
+  animation: propel-pulse 3.4s ease-in-out infinite;
+}
+
+.propel .hero-figure figcaption p {
+  margin: 0.2rem 0 0.55rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.propel .hero-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.propel .hero-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.propel .hero-legend span {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--asu-maroon);
+  color: transparent;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.propel .hero-legend li:nth-child(even) span {
+  background: var(--asu-gold);
+}
+
+@media (max-width: 860px) {
+  .propel .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .propel h1 {
+    max-width: none;
+  }
+}
